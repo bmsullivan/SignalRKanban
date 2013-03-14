@@ -1,0 +1,18 @@
+﻿@section scripts
+{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/kanban")
+}
+<div id="main">
+    <div id="lanes" data-bind="foreach:lanes">
+        <div class="lane" data-bind="foreach:cards,event:{dragover:cardDraggedOver,drop:$root.dropCardOnLane}">
+            <div class='card' draggable="true" data-bind="click:edit, event: { dragstart:$root.dragCard }">
+                <span data-bind="text:content, visible:!isEditing()"></span>
+                <textarea data-bind="visible:isEditing, value:content, hasfocus:isEditing"></textarea>
+            </div>
+        </div>
+    </div>
+    <div id="buttons">
+        <button id="createCard" data-bind="click:createCard">Create Card</button>
+    </div>
+</div>
