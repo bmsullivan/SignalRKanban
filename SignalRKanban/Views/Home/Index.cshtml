@@ -6,6 +6,10 @@
     @Scripts.Render("~/bundles/kanban")
 }
 <div id="main">
+    <div>
+        <input type="text" data-bind="value:boardName"/>
+        <button data-bind="click:joinBoard">Join Board</button>
+    </div>
     <div id="lanes" data-bind="foreach:lanes">
         <div class="lane" data-bind="foreach:cards,event:{dragover:cardDraggedOver,drop:$root.dropCardOnLane}">
             <div class='card' draggable="true" data-bind="click:edit, event: { dragstart:$root.dragCard }">

@@ -9,5 +9,7 @@ namespace SignalRKanban.Models
         public string Content { get; set; }
 
         public string Lane { get; set; }
+
+        public string Board { get; set; }
     }
 }
