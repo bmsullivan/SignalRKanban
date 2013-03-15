@@ -12,6 +12,17 @@
         }
     };
     
+    var draggedCard;
+
+    KanbanBoard.prototype.dragCard = function (card, event) {
+        draggedCard = card;
+        return true;
+    };
+    
+    KanbanBoard.prototype.dropCardOnLane = function (lane, event) {
+        kanbanHub.server.moveCard(draggedCard.id(), lane.id());
+    };
+    
     var vm = new KanbanBoard();
     
     kanbanHub.client.cardCreated = function (card) {
@@ -22,6 +33,10 @@
         vm.setCardContentById(card.ID, card.Content);
     };
     
+    kanbanHub.client.cardMoved = function (id, lane) {
+        vm.moveCardToLane(id, lane);
+    };
+   
     $.connection.hub.start();
     
     ko.applyBindings(vm);

@@ -25,5 +25,13 @@
             card.Content = content;
             Clients.All.cardContentChanged(card);
         }
+
+        public void MoveCard(Guid id, string lane)
+        {
+            var card = _cards[id];
+            card.Lane = lane;
+            Clients.All.cardMoved(id, lane);
+        }
+
     }
 }
