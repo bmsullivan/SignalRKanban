@@ -17,6 +17,13 @@
             var card = new Card { ID = id, Lane = "1", Content = ""};
             _cards[id] = card;
             Clients.All.cardCreated(card);                        
+        }    
+
+        public void ChangeCardContent(Guid id, string content)
+        {
+            var card = _cards[id];
+            card.Content = content;
+            Clients.All.cardContentChanged(card);
         }
     }
 }
